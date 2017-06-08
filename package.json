@@ -1,0 +1,21 @@
+{
+  "name": "survey-builder",
+  "version": "1.0.0",
+  "description": "create a quiz, survey or questionnaire",
+  "main": "index.js",
+  "author": "Subir <subir@desdevpro.com>",
+  "license": "MIT",
+  "dependencies": {
+    "next": "beta",
+    "prop-types": "^15.5.10",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "send": "^0.15.3",
+    "shortid": "^2.2.8"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  }
+}
