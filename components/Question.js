@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import * as TYPES from "../constants/questionTypes";
 import * as COLORS from "../constants/colors";
 
+import Checkbox from "./Checkbox";
 import Radio from "./Radio";
 import RangeStyle from "./RangeStyle";
 
@@ -15,21 +16,29 @@ class Question extends React.Component {
             responseOptions,
             responseTextRows,
             responseRange,
-            placeholder
+            placeholder,
+            multiple
         } = this.props;
 
         let responseWidget;
 
         switch(responseType) {
             case TYPES.OPTION:
-                responseWidget = (<div>
+                responseWidget = multiple ? (<div>
+                    {responseOptions.map(opt =>
+                        (<Checkbox
+                            key={`${id}-${opt}`}
+                            name={id}
+                            label={opt}
+                            value={false} />))}
+                    </div>) : (<div>
                     {responseOptions.map(opt =>
                         (<Radio
                             key={`${id}-${opt}`}
                             name={id}
                             label={opt}
                             value={false} />))}
-                </div>);
+                    </div>);
                 break;
 
             case TYPES.TEXT:
@@ -95,6 +104,7 @@ Question.propTypes = {
     responseTextRows: PropTypes.number,
     responseRange: PropTypes.arrayOf(PropTypes.number),
     placeholder: PropTypes.string,
+    multiple: PropTypes.bool
 };
 
 export default Question;
