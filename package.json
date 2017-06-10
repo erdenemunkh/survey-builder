@@ -6,6 +6,11 @@
   "author": "Subir <subir@desdevpro.com>",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.16.2",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mongodb": "^2.2.28",
+    "mongoose": "^4.10.5",
     "next": "beta",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
@@ -14,8 +19,12 @@
     "shortid": "^2.2.8"
   },
   "scripts": {
-    "dev": "next",
+    "dev": "./node_modules/.bin/babel-node index.js",
     "build": "next build",
-    "start": "next start"
+    "start": "NODE_ENV=production ./node_modules/.bin/babel-node index.js"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-node6": "^11.0.0"
   }
 }
