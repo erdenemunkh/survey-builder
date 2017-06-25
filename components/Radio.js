@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Radio = ({ name, label, value }) => {
+const Radio = ({ name, label, value, onChange }) => {
     return (<div className="radio">
         <label>
-            <input name={name} type="radio" value={value} />
+            <input name={name} type="radio" value={value} onChange={onChange} />
             {label}
         </label>
         <style jsx>{`
@@ -20,6 +20,7 @@ const Radio = ({ name, label, value }) => {
 };
 Radio.propTypes = {
     name: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
     label: PropTypes.string.isRequired,
     value: PropTypes.bool
 };

@@ -1,28 +1,35 @@
 import React from "react";
-import dataService from "../services/Data";
 
 import Layout from "../components/Layout";
-import Question from "../components/Question";
+import GithubRibbon from "../components/GithubRibbon";
 
 class Home extends React.Component {
-    static async getInitialProps({ req }) {
-        const survey = await dataService.getSurvey(req.query.id, req);
-        return {
-            questions: survey && survey.questions || []
-        };
-    }
     render() {
-        const { questions } = this.props;
-
         return (<Layout title="Survey Builder">
-            {questions && questions.length ? <div>
-                <div className="form">
-                    {this.props.questions.map(q => <Question key={q.id} {...q} />)}
+            <GithubRibbon />
+            <form action="/start" className="panel">
+                <h2>Here to take a survey?</h2>
+                <div className="form-group">
+                    <input
+                        type="text"
+                        placeholder="Enter your access code here"
+                        name="id"
+                        className="form-control"
+                        required={true} />
                 </div>
-                <button className="btn btn-success">Submit</button>
-            </div> : <div>
-                Loading ...
-            </div>}
+                <div className="form-group">
+                    <button className="btn btn-primary pull-right" type="submit">Start</button>
+                </div>
+            </form>
+            <style jsx>{`
+                h2 {
+                    font-size: 2.5rem;
+                    margin: 0 0 30px 0;
+                }
+                .panel {
+                    padding: 60px 40px;
+                }
+            `}</style>
         </Layout>);
     }
 }

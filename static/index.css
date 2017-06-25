@@ -1,0 +1,18 @@
+@import url("/static/bootstrap.css");
+
+html,
+body,
+body > div:first-child,
+#__next,
+div[data-reactid="1"],
+div[data-reactid="2"] {
+    height: 100%;
+}
+main {
+    min-height: 100%;
+    margin-bottom: -140px;
+    padding-bottom: 190px;
+}
+footer {
+    height: 140px;
+}
