@@ -8,10 +8,12 @@ import questions from "../.data/questions";
 
 class Home extends React.Component {
     static async getInitialProps({ req, query }) {
-        let survey = await dataService.getSurvey(req, {
-            name: "Test 01"
-        });
-        console.log("EXISTING SURVEY: ", survey);
+        let survey = {};
+        try {
+            survey = await dataService.getSurvey(query.id, req);
+        } catch(ex) {
+            console.log(`Survey ${query.id} not found`);
+        }
         if(!survey || !survey.length) {
             survey = await dataService.createSurvey({
                 name: "Test 01",

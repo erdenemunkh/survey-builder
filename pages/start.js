@@ -6,9 +6,17 @@ import Question from "../components/Question";
 
 class Survey extends React.Component {
     static async getInitialProps({ req }) {
-        const survey = await dataService.getSurvey(req.query.id, req);
-        if(!survey)
+        let survey;
+        try {
+            survey = await dataService.getSurvey(req.query.id, req);
+        } catch(ex) {
+            console.log(`Error: Survey ${req.query.id} not found`);
             return {};
+        }
+        if(!survey) {
+            console.log("No such survey");
+            return {};
+        }
         return {
             questions: survey.questions || [],
             name: survey.name || "",

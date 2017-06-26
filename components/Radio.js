@@ -2,9 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Radio = ({ name, label, value, onChange }) => {
+    const handleChange = ev => {
+        if(typeof(onChange)=="function") {
+            onChange({
+                label,
+                checked: ev.target.checked
+            });
+        }
+    };
     return (<div className="radio">
         <label>
-            <input name={name} type="radio" value={value} onChange={onChange} />
+            <input name={name} type="radio" value={value} onChange={handleChange} />
             {label}
         </label>
         <style jsx>{`

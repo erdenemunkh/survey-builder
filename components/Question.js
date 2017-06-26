@@ -3,11 +3,18 @@ import PropTypes from "prop-types";
 import * as TYPES from "../constants/questionTypes";
 import * as COLORS from "../constants/colors";
 
-import Checkbox from "./Checkbox";
-import Radio from "./Radio";
+import CheckGroup from "./CheckGroup";
+import RadioGroup from "./RadioGroup";
 import RangeStyle from "./RangeStyle";
 
 class Question extends React.Component {
+    constructor() {
+        super();
+        this.handleChange = this.handleChange.bind(this);
+    }
+    handleChange(val) {
+        console.log(this.props.statement, val);
+    }
     render() {
         const {
             id,
@@ -24,21 +31,13 @@ class Question extends React.Component {
 
         switch(responseType) {
             case TYPES.OPTION:
-                responseWidget = multiple ? (<div>
-                    {responseOptions.map(opt =>
-                        (<Checkbox
-                            key={`${id}-${opt}`}
-                            name={id}
-                            label={opt}
-                            value={false} />))}
-                    </div>) : (<div>
-                    {responseOptions.map(opt =>
-                        (<Radio
-                            key={`${id}-${opt}`}
-                            name={id}
-                            label={opt}
-                            value={false} />))}
-                    </div>);
+                responseWidget = multiple
+                    ? (<CheckGroup
+                        options={responseOptions}
+                        onChange={this.handleChange} />)
+                    : (<RadioGroup
+                        options={responseOptions}
+                        onChange={this.handleChange} />);
                 break;
 
             case TYPES.TEXT:
@@ -67,12 +66,13 @@ class Question extends React.Component {
                 </div>);
                 break;
 
-            case TYPES.BOOLEAN:
-                responseWidget = (<div>
-                    <Radio name={id} label={responseOptions[0]} value={false} />
-                    <Radio name={id} label={responseOptions[1]} value={false} />
-                </div>);
+            case TYPES.BOOLEAN: {
+                const options = [ ...responseOptions ]    ;
+                responseWidget = (<RadioGroup
+                    options={options}
+                    onChange={this.handleChange} />);
                 break;
+            }
         }
 
         return (<div className="panel">

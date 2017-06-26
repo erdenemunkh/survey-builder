@@ -4,8 +4,6 @@ import Head from "next/head";
 import PropTypes from "prop-types";
 import * as COLORS from "../constants/colors";
 
-// import "bootstrap-sass/assets/stylesheets/_bootstrap.scss";
-
 const Layout = props => {
     const { children, title, heading, description } = props;
     return (<div>
@@ -43,7 +41,7 @@ const Layout = props => {
             header {
                 background-color: ${COLORS.headerBg};
                 color: ${COLORS.headerText};
-                height: 90px;
+                height: 120px;
                 left: 0;
                 position: fixed;
                 right: 0;
@@ -51,16 +49,16 @@ const Layout = props => {
             }
             header h1 {
                 color: ${COLORS.headerText};
-                font-size: 3em;
-                font-weight: 600;
-                margin: 10px 0;
+                font-size: 2.5em;
+                font-weight: 400;
+                margin: 20px 0 10px;
             }
             header p {
 
             }
             main {
                 background-color: #f2f2f2;
-                padding-top: 120px;
+                padding-top: 150px;
             }
             footer {
                 background-color: #2a262c;
