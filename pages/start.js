@@ -1,8 +1,9 @@
 import React from "react";
+
 import dataService from "../services/Data";
 
 import Layout from "../components/Layout";
-import Question from "../components/Question";
+import Question from "../components/QuestionContainer";
 
 class Survey extends React.Component {
     static async getInitialProps({ req }) {

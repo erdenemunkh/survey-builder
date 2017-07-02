@@ -36,7 +36,6 @@ app.prepare().then(() => {
         req.models = models;
         next();
     });
-
     // server.post("/api/login", (req, res) => {
     //     if (!req.body)
     //         return res.sendStatus(400);

@@ -2,5 +2,6 @@
   "presets": [
     "node6",
     "next/babel"
-  ]
+  ],
+  "plugins": ["transform-decorators-legacy"]
 }

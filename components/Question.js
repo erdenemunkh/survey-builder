@@ -1,11 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import * as TYPES from "../constants/questionTypes";
 import * as COLORS from "../constants/colors";
 
 import CheckGroup from "./CheckGroup";
 import RadioGroup from "./RadioGroup";
 import RangeStyle from "./RangeStyle";
+import TextBox from "./TextBox";
 
 class Question extends React.Component {
     constructor() {
@@ -13,6 +15,7 @@ class Question extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
     handleChange(val) {
+        this.props.onChange(this.props.id, val);
         console.log(this.props.statement, val);
     }
     render() {
@@ -43,14 +46,14 @@ class Question extends React.Component {
             case TYPES.TEXT:
                 responseWidget = (<div className="form-group">
                     {responseTextRows==1
-                        ? <input
-                            type="text"
-                            className="form-control"
-                            placeholder={placeholder} />
-                        : <textarea
+                        ? <TextBox
+                            placeholder={placeholder}
+                            onChange={this.handleChange} />
+                        : <TextBox
+                            multiple={true}
+                            placeholder={placeholder}
                             rows={responseTextRows}
-                            className="form-control"
-                            placeholder={placeholder} />}
+                            onChange={this.handleChange} />}
                 </div>);
                 break;
 
